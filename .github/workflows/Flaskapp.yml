@@ -13,9 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-       - name: Copy project to VM
-         uses: appleboy/scp-action@v0.1.7
-         with:
+      - name: Copy project to VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
            host: ${{ vars.VM_HOST }}
            username: ${{ vars.VM_USER }}
            key: ${{ secrets.SSHPRIVATEKEY }}
