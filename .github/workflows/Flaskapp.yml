@@ -30,7 +30,7 @@ jobs:
           key: ${{ secrets.SSHPRIVATEKEY }}
           script: |
             cd /var/www/flaskapp
-            python3 -m venv venv
+            sudo python3 -m venv venv
             source venv/bin/activate
-            pip install -r requirements.txt
+            sudo pip install -r requirements.txt
             sudo systemctl restart flaskapp
