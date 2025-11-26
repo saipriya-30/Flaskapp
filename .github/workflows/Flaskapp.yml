@@ -13,14 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Copy project to VM
-      #   uses: appleboy/scp-action@v0.1.7
-      #   with:
-      #     host: ${{ vars.VM_HOST }}
-      #     username: ${{ vars.VM_USER }}
-      #     key: ${{ secrets.SSHPRIVATEKEY }}
-      #     source: "."
-      #     target: "/var/www/flaskapp"
+       - name: Copy project to VM
+         uses: appleboy/scp-action@v0.1.7
+         with:
+           host: ${{ vars.VM_HOST }}
+           username: ${{ vars.VM_USER }}
+           key: ${{ secrets.SSHPRIVATEKEY }}
+           source: "."
+           target: "/var/www/flaskapp"
 
       - name: SSH into VM and set up app
         uses: appleboy/ssh-action@v0.1.7
@@ -30,6 +30,7 @@ jobs:
           key: ${{ secrets.SSHPRIVATEKEY }}
           script: |
             cd /var/www/flaskapp
+            sudo python3 -m pip install --upgrade pip
             sudo python3 -m venv venv
             source venv/bin/activate
             sudo pip install -r requirements.txt
